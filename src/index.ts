@@ -6,8 +6,7 @@ async function main() {
   try {
     await init();
   } catch (error) {
-    console.error("Failed to initialize the model:", error);
-    return;
+    log({ error: `Initialization failed: ${error}` });
   }
 
   const rl = readline.createInterface({
@@ -55,11 +54,13 @@ async function main() {
           role: "assistant",
           content: response.message.content,
         });
-        log(response.message);
+        log({ message: response.message });
       }
     } catch (error) {
       rl.resume();
-      console.error("Error:", error);
+      log({
+        error: `Error during chat: ${error}`,
+      });
     }
   }
 

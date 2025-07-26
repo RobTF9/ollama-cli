@@ -46,9 +46,26 @@ export function assistantMessage(content: string) {
   return `\n${colors.assistant}[ASSISTANT]${reset}\n${content}\n`;
 }
 
-export function log(message: Message) {
+export function errorMessage(content: string) {
+  return `${icons.cross}${colors.error} Error: ${content}${reset}`;
+}
+
+interface LogArgs {
+  message?: Message;
+  error?: string;
+}
+
+export function log({ message, error }: LogArgs) {
+  if (error) {
+    console.error(errorMessage(error));
+  }
+
+  if (!message) return;
+
+  if (message.role === "user") {
+    console.log(userMessage(message.content));
+  }
   if (message.role === "assistant") {
     console.log(assistantMessage(message.content));
-    return;
   }
 }
