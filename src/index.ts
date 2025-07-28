@@ -2,6 +2,7 @@ import * as readline from "readline";
 import { init } from "./model";
 import { log, userMessage } from "./ui";
 import { agent } from "./agent";
+import { tools } from "./tools";
 
 async function main() {
   try {
@@ -28,7 +29,7 @@ async function main() {
 
     try {
       rl.pause();
-      await agent({ userMessage: userInput });
+      await agent({ userMessage: userInput, tools });
     } catch (error) {
       log({ error: `${error}` });
     } finally {

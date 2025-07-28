@@ -1,6 +1,7 @@
 import { Tool } from "ollama";
 import { model } from "./model";
 import { loader, log } from "./ui";
+import { runner } from "./tools";
 
 interface AgentArgs {
   userMessage: string;
@@ -43,6 +44,12 @@ export async function agent({ userMessage, tools = [] }: AgentArgs) {
       if (response.message.tool_calls) {
         const toolCall = response.message.tool_calls[0];
         agentLoader.text(`Executing tool: ${toolCall.function.name}`);
+        const toolResponse = await runner({ toolCall });
+        messages.push({
+          role: "tool",
+          content: toolResponse,
+        });
+        agentLoader.succeed(`Tool executed: ${toolCall.function.name}`);
       }
     }
   } catch (error) {

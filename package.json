@@ -12,7 +12,8 @@
   "dependencies": {
     "ollama": "^0.5.16",
     "ora": "^8.2.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "zod": "^4.0.10"
   },
   "devDependencies": {
     "@types/node": "^24.1.0"
