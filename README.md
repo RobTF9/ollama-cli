@@ -21,7 +21,7 @@ A TypeScript CLI application that provides an interactive chat interface with Ol
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd arbiter
+cd ollama-cli
 ```
 
 2. Install dependencies:
