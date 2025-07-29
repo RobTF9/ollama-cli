@@ -1,4 +1,4 @@
-# Arbiter
+# ollama-cli
 
 A TypeScript CLI application that provides an interactive chat interface with Ollama AI models and tool calling capabilities.
 
